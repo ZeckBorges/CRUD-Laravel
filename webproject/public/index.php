@@ -46,7 +46,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-define('BASE_URL','http://localhost:8000/public/index');
+define('BASE_URL','http://localhost:8000/public/consoles');
 $kernel = $app->make(Kernel::class);
 
 $response = tap($kernel->handle(

@@ -14,13 +14,22 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('index', [ProdutosController:: class, 'index']);
-Route::post('index', [ProdutosController:: class, 'insert']);
-Route::get('index/delete/{CodConsole}', [ProdutosController:: class, 'delete']);
-Route::get('index/edit/{CodConsole}', [ProdutosController:: class, 'edit']);
-Route::post('index/edit/{CodConsole}', [ProdutosController:: class, 'update']);
+Route::get('consoles', [ProdutosController:: class, 'consoles']);
+Route::get('jogos', [ProdutosController:: class, 'jogos']);
+Route::get('acessorios', [ProdutosController:: class, 'acessorios']);
+Route::post('consoles', [ProdutosController:: class, 'insert']);
+Route::get('consoles/delete/{CodConsole}', [ProdutosController:: class, 'delete']);
+Route::get('consoles/edit/{CodConsole}', [ProdutosController:: class, 'edit']);
+Route::get('consoles/addcar/{CodConsole}', [ProdutosController:: class, 'addcar']);
+Route::post('consoles/edit/{CodConsole}', [ProdutosController:: class, 'update']);
+Route::post('consoles/addcar/{CodConsole}', [ProdutosController:: class, 'compra']);
+
+//Route::get('/index', [ProdutosController:: class, 'index']);
+
+//Route::view('/index', 'index');
 
 
-Route::get('/', function (Request $request) {
-    //return view('Welcome');
+//Request $request
+Route::get('/', function () {
+    return view('index');
 });

@@ -10,8 +10,22 @@
     class ProdutosController extends Controller{
 
         public function index(){
+            return view('index');
+        }
+
+        public function consoles(){
             $data['produtos'] = Produtos::all();
             return view('Produtos', $data);
+        }
+
+        public function jogos(){
+            
+            return view('Jogos');
+        }
+
+        public function acessorios(){
+            
+            return view('Acessorios');
         }
 
         public function insert(Request $request){
@@ -44,6 +58,21 @@
         public function edit($id){
             $data = Produtos::find($id);
             return view('edit', ['data'=>$data]);
+        }
+
+        public function addcar($id){
+            $data = Produtos::find($id);
+            return view('carrinho',['produto'=>$data]);
+        }
+        public function compra(Request $request){
+            $data = Produtos::find($request->id);
+            $data->qtde = $request->qtde-1;
+            $data->save();
+            echo '<script>alert("Compra finalizada com sucesso!")</script>';
+            echo '<script>location.href="'.BASE_URL.'"</script>';
+			die();
+            return Redirect::to('/');
+
         }
 
         public function update(Request $request){

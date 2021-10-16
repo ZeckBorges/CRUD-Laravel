@@ -32,17 +32,24 @@
 						<tr class="text-warning">
 							<th>Plataforma</th>
 							<th>Preço</th>
-							<th>Quantidade</th>
+							<th>Disponibilidade</th>
 						</tr>
 					</thead>
 					<tbody>
 							@foreach($produtos as $produto)
 							<tr class="text-info">
 								<td>{{$produto['Nome']}}</td>
-								<td>R${{$produto['Preco']}},00</td>
-								<td>{{$produto['Qtde']}}</td>
-								<td><button class="btn btn-outline-warning" ><a class = "text-warning" href = "index/edit/{{$produto['CodConsole']}}" >Atualizar</a></button></td>
-								<td><button class="btn btn-outline-danger" ><a class = "text-danger" href = "index/delete/{{$produto['CodConsole']}}" >Deletar</a></button></td>	
+								<td>R${{number_format($produto['Preco'],2,",",".")}}</td>
+								@if($produto['Qtde']>0)
+									<!--<td class = "text-success">{{"Disponível"}}</td> -->
+									<td><button class="btn btn-outline-success" ><a class = "text-success" href = "consoles/addcar/{{$produto['CodConsole']}}" >Comprar</a></button></td>
+									@else
+										<td class = "text-danger">{{"Indisponível"}} </td>
+										<!--<td><button class="btn btn-outline-danger" ><a class = "text-danger" href = "" >Indisponível</a></button></td>-->
+									@endif	
+								<td><button class="btn btn-outline-warning" ><a class = "text-warning" href = "consoles/edit/{{$produto['CodConsole']}}" >Atualizar</a></button></td>
+								<td><button class="btn btn-outline-danger" ><a class = "text-danger" href = "consoles/delete/{{$produto['CodConsole']}}" >Deletar</a></button></td>
+								
 							</tr>
 							@endforeach     
 					</tbody>
@@ -54,7 +61,7 @@
 				{{csrf_field()}}
 				<input type="text" name="nome" placeholder="Nome...">
 				<input type="text" name="preco" placeholder="Preço...">
-				<input type="text" name="qtde" placeholder="Quantidade...">
+				<input type="number" name="qtde" placeholder="Quantidade...">
 				<input type="submit" class="btn btn-success" value="Inserir!">
 			</form>
 		</div>
